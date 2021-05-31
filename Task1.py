@@ -13,3 +13,6 @@
 # you called func(4, 4, 4)
 # it returned 6
 # 6
+
+print('test')
+print('test2')
