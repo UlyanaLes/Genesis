@@ -13,6 +13,22 @@
 # you called func(4, 4, 4)
 # it returned 6
 # 6
+import logging
 
-print('test')
-print('test233')
+
+def logged(func):
+    def wrapper(*args, **kwargs):
+        # почему автоматически в лог доставляются скобки крузлые?
+        logging.warning(f"""you called func{args, kwargs}  
+        it returned {func(*args, **kwargs)}""")  # как сделать так чтобы func не вызывать дыважды? просто сохранить резутьтат в переменную?
+        return func(*args, **kwargs)
+
+    return wrapper
+
+
+@logged  # func=logged(func)
+def func(*args, **kwargs):
+    return 3 + len(args) + len(kwargs)
+
+
+print(func(1, 2, 3, a=7, b=4))
