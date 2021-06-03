@@ -23,7 +23,7 @@ def get_shortest_word(my_str):
     for el in my_list:
         if len(longest) < len(el):
             longest = el
-    print(longest)      #return!!
+    return longest  # return!!
 
 
-get_shortest_word('Python is simple and effective!')
+print(get_shortest_word('Python is simple and effective!'))

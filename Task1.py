@@ -18,17 +18,18 @@ import logging
 
 def logged(func):
     def wrapper(*args, **kwargs):
-        # почему автоматически в лог доставляются скобки крузлые?
-        logging.warning(f"""you called func{args, kwargs}  
-        it returned {func(*args, **kwargs)}""")  # как сделать так чтобы func не вызывать дыважды? просто сохранить резутьтат в переменную?
-        return func(*args, **kwargs)
+        # почему автоматически в лог доставляются скобки круглые? // нужно распаковать List и dict
+        func_result = func(*args, **kwargs)
+        logging.warning(f"""you called {func.__name__} {*args,*[i for i in kwargs.values()]}  
+        it returned {func_result}""")  # как сделать так чтобы func не вызывать дыважды? просто сохранить резутьтат в переменную?
+        return func_result
 
     return wrapper
 
 
 @logged  # func=logged(func)
-def func(*args, **kwargs):
+def foo(*args, **kwargs):
     return 3 + len(args) + len(kwargs)
 
 
-print(func(1, 2, 3, a=7, b=4))
+print(foo(1, 2, 3, a=7, b=4))

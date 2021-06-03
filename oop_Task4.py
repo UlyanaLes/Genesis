@@ -39,17 +39,17 @@ import logging
 
 class Counter:
     def __init__(self, start=0, stop=None):
-        self.value = start
-        self.stop = stop
+        self.__value = start   # __ для запрета редактирования внутренних атрибутов ( _ все еще могу получить из вне)
+        self.__stop = stop
 
     def get(self):
-        return self.value
+        return self.__value
 
     def increment(self):
-        if self.value is not None and self.value == self.stop:  # сравнить с None в первую очередь
+        if self.__value is not None and self.__value == self.__stop:  # сравнить с None в первую очередь
             print('Maximal value is reached.')
         else:
-            self.value += 1
+            self.__value += 1
 
 
 c = Counter(start=42)

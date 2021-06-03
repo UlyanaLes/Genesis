@@ -22,13 +22,15 @@
 # >>> 5
 # ```
 
+# !!!сделать с переменной в замыкании (определить переменную внутри декоратора)
+
 def dec(foo):
     def wrapper():
-        wrapper.count += 1
+        wrapper.__count += 1
         foo()
-        return wrapper.count
+        return wrapper.__count
 
-    wrapper.count = 0
+    wrapper.__count = 0
     return wrapper
 
 

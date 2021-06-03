@@ -19,12 +19,12 @@
 
 def get_pairs(my_list):
     if len(my_list) < 2:
-        print(None)     # return!!
+        return     # return!! // return == return None
     else:
         new_list = []
         for i in range(len(my_list)-1):
             new_list.append((my_list[i], my_list[i + 1]))
-        print(new_list)     # return!!
+        return new_list     # return!!
 
 
-get_pairs(['need', 'to', 'sleep', 'more'])
+print(get_pairs(['need', 'to', 'sleep', 'more']))
