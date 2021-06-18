@@ -8,12 +8,15 @@ import logging
 
 
 def dec(func):
-    def wrapper(n):
-        if wrapper.__dict_memo.get(n) is None:
-            wrapper.__dict_memo[n] = func(n)
-        return wrapper.__dict_memo[n]
+    __dict_memo = {}
 
-    wrapper.__dict_memo = {}
+    def wrapper(n):
+        result = __dict_memo.get(n)
+        if result is None:
+            result = func(n)
+            __dict_memo[n] = result
+        return result
+
     return wrapper
 
 
