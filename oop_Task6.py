@@ -34,21 +34,25 @@ class Money:
         self.currency = currency_inst
         self.exchange_rate = None
 
-    def trans_and_verify(self):
+    # @property
+    # def exchange_rate(self):
+    #     if self._exchange_rate is None:
+    #         self._exchange_rate = 1
+
+        # return self._exchange_rate
+
+    def trans_and_verify(self):   # +other
         if self.currency != 'usd':
             if hasattr(self, "exchange_rate") and self.exchange_rate is not None:
                 return self.amount * self.exchange_rate
-            else:
-                raise TypeError('exchange_rate attribute is empty or missed')
-        else:
-            return self.amount
+            raise TypeError('exchange_rate attribute is empty or missed')
+        return self.amount
 
     ## проверка на тип???
     def __add__(self, other):
         if self.currency == other.currency:
             return Money(self.amount + other.amount, self.currency)
-        else:
-            return Money(self.trans_and_verify() + other.trans_and_verify(), "usd")
+        return Money(self.trans_and_verify() + other.trans_and_verify(), "usd")
 
     def __mul__(self, other):
         return Money(self.amount * other.amount, self.currency)

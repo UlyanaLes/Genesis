@@ -46,7 +46,10 @@
 from abc import ABC, abstractmethod
 
 
-class Bird_abstract(ABC):
+class BirdABC(ABC):
+    def __init__(self, abstract_name):
+        self.name = abstract_name
+
     @abstractmethod
     def fly(self):
         pass
@@ -60,9 +63,9 @@ class Bird_abstract(ABC):
         pass
 
 
-class Bird(Bird_abstract):
-    def __init__(self, abstract_name):
-        self.name = abstract_name
+class Bird(BirdABC):
+    # def __init__(self, abstract_name):
+    #    self.name = abstract_name
 
     def fly(self):
         print(self.name, 'can fly')
@@ -76,7 +79,7 @@ class Bird(Bird_abstract):
 
 class Penguin(Bird):
     def fly(self):
-        print(self.name, 'can\'t fly')
+        print(self.name, 'can\'t fly')  # !
 
     def swim(self):
         print(self.name, 'can swim')
@@ -93,7 +96,7 @@ class Canary(Bird):
         print(self.name, "eats mostly grains")
 
 
-class SeaGull(Penguin, Bird):
+class SeaGull(Penguin, Bird):  # fly??
     def __str__(self):
         return f'{self.name} can fly, walk and swim'
 
